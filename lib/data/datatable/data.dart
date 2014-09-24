@@ -165,7 +165,7 @@ class DatatableServerDataFetcher extends DatatableDataFetcher {
     
     request.open("POST", url, async: true);
     request.setRequestHeader('Authorization', "Token token=${window.localStorage['user-token']}");
-    request.overrideMimeType('Content-Type', "application/json");
+    request.setRequestHeader('Content-Type', "application/json");
     request.overrideMimeType('application/json');
     request.send(JSON.encode(data));
     
