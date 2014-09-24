@@ -151,7 +151,6 @@ class DatatableServerDataFetcher extends DatatableDataFetcher {
     String url = "${_serviceURL}?page=${page}&rows=${rows}";
     
     HttpRequest request = new HttpRequest();
-    request.setRequestHeader('Authorization', "Token token=${window.localStorage['user-token']}");
     
     request.onReadyStateChange.listen((_) {
       if (request.readyState == HttpRequest.DONE && (request.status == 200 || request.status == 0)) {
@@ -165,6 +164,7 @@ class DatatableServerDataFetcher extends DatatableDataFetcher {
     });
     
     request.open("POST", url, async: false);
+    request.setRequestHeader('Authorization', "Token token=${window.localStorage['user-token']}");
     request.send(JSON.encode(data));
     
     return completer.future;
