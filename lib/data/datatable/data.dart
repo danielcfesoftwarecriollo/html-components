@@ -151,8 +151,7 @@ class DatatableServerDataFetcher extends DatatableDataFetcher {
     String url = "${_serviceURL}?page=${page}&rows=${rows}";
     
     HttpRequest request = new HttpRequest();
-    request.setRequestHeader('Authorization', "Token token=${window.localStorage['user-token']}");
-    
+    request.overrideMimeType('application/json');
     request.onReadyStateChange.listen((_) {
       if (request.readyState == HttpRequest.DONE && (request.status == 200 || request.status == 0)) {
         Map<String, dynamic> jsonMap = JSON.decode(request.responseText);
@@ -163,8 +162,11 @@ class DatatableServerDataFetcher extends DatatableDataFetcher {
         completer.complete(new DatatablePacket(result, totalCount));
       }
     });
+
     
-    request.open("POST", url, async: false);
+    request.open("POST", url, async: true);
+    request.setRequestHeader('Authorization', "Token token=${window.localStorage['user-token']}");
+    request.setRequestHeader('Content-Type', "application/json");
     request.send(JSON.encode(data));
     
     return completer.future;
