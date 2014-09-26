@@ -13,9 +13,10 @@ class ColumnModel extends Object with Observable {
   @published bool editable = false;
   @published bool resizable = false;
   @published bool editing = false;
+  @published List<String> dataFilter = [];
   @observable Sort sort;
   
   ColumnModel(this.property, this.type, this.header, this.content, this.footer,
       this.textAlign, this.sortable, this.filterable, this.editable,
-      this.resizable, this.editing);
+      this.resizable, this.editing, this.dataFilter);
 }

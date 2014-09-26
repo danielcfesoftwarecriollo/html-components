@@ -58,6 +58,16 @@
                           <input type="checkbox" checked="{{filters[column.value].last.value}}"> False
                         </label>
                       </template>
+                      <template if="{{column.value.type == 'list'}}">
+                        <select name="" selectedIndex="{{filters[column.value].last.value}}" >
+                          <option template repeat="{{item in column.value.dataFilter | enumerate}}" value="{{item.value}}">{{item.value}}</option>
+                        </select>
+                      </template>
+                      <template if="{{column.value.type == 'enum'}}">
+                        <select name="" selectedIndex="{{filters[column.value].last.value}}" >
+                          <option template repeat="{{item in column.value.dataFilter | enumerate}}" value="{{item.ixdex}}">{{item.value}}</option>
+                        </select>
+                      </template>
                     </div>
                   </div>
                 </template>

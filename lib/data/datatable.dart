@@ -78,6 +78,13 @@ class DatatableComponent extends PolymerElement with FilterListener {
             new CheckedFilter(columnModel.property, FilterOperator.EQUALS, false, this)
           ];
         }
+        else if (columnModel.type == 'list') {
+          filters[columnModel] = [];
+          columnModel.dataFilter.forEach((f){
+            var aux = new CheckedFilter(columnModel.property, FilterOperator.EQUALS, false, this);
+            filters[columnModel].add(aux);
+          });
+        }
       });
       
       showColumnHeader = columns.any((ColumnModel column) => column.header != null);

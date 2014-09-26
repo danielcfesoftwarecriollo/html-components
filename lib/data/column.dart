@@ -18,6 +18,7 @@ class ColumnComponent extends PolymerElement {
   @published bool editable = false;
   @published bool resizable = false;
   @published bool editing = false;
+  @published List<String> dataFilter = [];
   
   ColumnComponent.created() : super.created();
   
@@ -54,6 +55,6 @@ class ColumnComponent extends PolymerElement {
     $['hidden'].remove();
   }
   
-  ColumnModel get model => new ColumnModel(property, type, header, content, footer, textAlign, sortable, filterable, editable, resizable, editing);
+  ColumnModel get model => new ColumnModel(property, type, header, content, footer, textAlign, sortable, filterable, editable, resizable, editing,dataFilter);
   
 }
